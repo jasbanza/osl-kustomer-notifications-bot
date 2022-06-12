@@ -1,3 +1,6 @@
+package-lock.json
+config.js
+config.json
 # Logs
 logs
 *.log

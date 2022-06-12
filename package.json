@@ -1,0 +1,23 @@
+{
+  "name": "osl-kustomer-notifications-bot",
+  "version": "1.0.0",
+  "description": "Integrate Kustomer webhook to telegram bot for notifications.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasbanza/osl-kustomer-notifications-bot.git"
+  },
+  "author": "jasbanza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasbanza/osl-kustomer-notifications-bot/issues"
+  },
+  "homepage": "https://github.com/jasbanza/osl-kustomer-notifications-bot#readme",
+  "dependencies": {
+    "js-console-log-colors": "^1.1.0",
+    "node-fetch": "^2.6.7"
+  }
+}
