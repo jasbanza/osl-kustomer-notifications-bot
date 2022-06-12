@@ -13,7 +13,7 @@ const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, "http://example.test");
 
   const res_json = {};
-  if (req.method === "GET") {
+  if (req.method === "GET" || req.method === "POST") {
     const arrPath = url.pathname.split("/");
     switch (arrPath[1]) {
       case "notify": // https://localhost:9000/notify
@@ -41,7 +41,7 @@ const server = http.createServer(async (req, res) => {
   res.end();
 });
 
-server.listen(config.port, config.host, () => {
+server.listen(config.port, /*config.host,*/ () => {
   out.success(`Server is running on http://${config.host}:${config.port}`);
 });
 
