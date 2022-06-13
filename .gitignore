@@ -1,6 +1,5 @@
 package-lock.json
-config.js
-config.json
+config.php
 # Logs
 logs
 *.log
