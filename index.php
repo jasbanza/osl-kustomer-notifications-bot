@@ -33,19 +33,20 @@ if (!isset($_SERVER["HTTP_X_KUSTOMER_WEBHOOK_EVENT"])) {
 
 $conversationId = $data['data']['id'];
 
-// After conversation is created, it is assigned. so wait for 10 seconds and check who it is assigned to:
-sleep(15);
+tg_send_message("A new conversation has started!");
 
-$userId = conversation_get_assigned_userId($conversationId); // userId will be null if not assigned
+check_assigned($conversationId, 30, 10);
 
-if($userId){
-  $displayName = get_displayName_from_userId($userId);
-
-  tg_send_message("A new conversation has started!\n\nAssigned to: ".$displayName);
-} else {
-  tg_send_message("A new conversation has started!");
+function check_assigned($conversationId, $numAttempts, $retryTimeout){
+  $userId = conversation_get_assigned_userId($conversationId); // userId will be null if not assigned
+  if($userId){
+    $displayName = get_displayName_from_userId($userId);
+    tg_send_message("... the conversation was assigned to: ".$displayName);
+  } else if($numAttempts > 0){
+    sleep($retryTimeout);
+    check_assigned($conversationId,--$numAttempts, $retryTimeout);
+  }
 }
-
 
 function conversation_get_assigned_userId($conversationId){
   global $config;
