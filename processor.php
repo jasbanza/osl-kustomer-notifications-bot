@@ -1,9 +1,9 @@
 <?php
     include 'config.php';
-    ignore_user_abort(true);                       //very important!
-
+    ignore_user_abort(true); //very important!
 
     $conversationId = $_POST['conversationId'];
+
 
     if(!isset($_POST['conversationId'])){
       die('missing conversationId');
@@ -18,10 +18,11 @@
     }
 
 
+    sleep(10);
     $arrInfo = conversation_get_info($conversationId);
 
+
     if($arrInfo){
-      sleep(10);
       $txt = "<i>⭐ A new conversation has started!</i>";
 
       // only include "admins" team
@@ -37,7 +38,7 @@
         tg_send_message($txt);
 
         if(!$isAssigned){
-          check_assigned($conversationId,15,10);
+          check_assigned($conversationId, $config['RETRY_ATTEMPTS'], $config['RETRY_TIMEOUT']);
         }
       }
     }
